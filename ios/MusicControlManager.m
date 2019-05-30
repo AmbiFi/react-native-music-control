@@ -178,9 +178,10 @@ RCT_EXPORT_METHOD(enableControl:(NSString *) controlName enabled:(BOOL) enabled 
 /* We need to set the category to allow remote control etc... */
 
 RCT_EXPORT_METHOD(enableBackgroundMode:(BOOL) enabled){
-    AVAudioSession *session = [AVAudioSession sharedInstance];
-    [session setCategory: AVAudioSessionCategoryPlayback error: nil];
-    [session setActive: enabled error: nil];
+     AVAudioSession *session = [AVAudioSession sharedInstance];
+     [session setCategory: AVAudioSessionCategoryPlayAndRecord withOptions:AVAudioSessionCategoryOptionDefaultToSpeaker|AVAudioSessionCategoryOptionAllowBluetooth error: nil];
+//    [session setCategory: AVAudioSessionCategoryPlayback error: nil];
+     [session setActive: enabled error: nil];
 }
 
 RCT_EXPORT_METHOD(stopControl){
